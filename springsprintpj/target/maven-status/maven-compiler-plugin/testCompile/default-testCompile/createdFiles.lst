@@ -1,0 +1,3 @@
+com\springteam\springsprintpj\service\impl\HeroServiceImplTest.class
+com\springteam\springsprintpj\controller\HeroControllerTest.class
+com\springteam\springsprintpj\repository\HeroRepositoryTest.class
