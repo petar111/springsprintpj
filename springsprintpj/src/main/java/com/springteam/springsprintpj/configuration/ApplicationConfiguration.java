@@ -2,6 +2,7 @@ package com.springteam.springsprintpj.configuration;
 
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Import;
+import org.springframework.context.annotation.ImportResource;
 
 import com.springteam.springsprintpj.configuration.db.OracleDatabaseConfiguration;
 import com.springteam.springsprintpj.configuration.db.jdbc.JdbcConfiguration;
@@ -13,6 +14,7 @@ import com.springteam.springsprintpj.configuration.validation.ValidationConfigur
 @Configuration
 @Import({ OracleDatabaseConfiguration.class, InjectConfiguration.class, PersistenceConfiguration.class,
 		JdbcConfiguration.class, JmsConfiguration.class, ValidationConfiguration.class })
+@ImportResource("classpath:/configuration/application-configuration.xml")
 public class ApplicationConfiguration {
 
 }

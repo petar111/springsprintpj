@@ -4,6 +4,7 @@ import java.math.BigDecimal;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -11,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.google.common.collect.Lists;
 import com.springteam.springsprintpj.model.dto.HeroDto;
 import com.springteam.springsprintpj.service.HeroService;
 
@@ -22,6 +24,10 @@ import lombok.RequiredArgsConstructor;
 public class HeroController {
 
 	private final HeroService service;
+
+	@Autowired
+	@Qualifier("premiumHero-DC001AC13")
+	private HeroDto premiumHero1;
 
 	@GetMapping("{id}")
 	public HeroDto getHeroById(@PathVariable BigDecimal id) {
@@ -41,6 +47,11 @@ public class HeroController {
 	@PostMapping("addall")
 	public List<HeroDto> addAllHeros(@RequestBody List<HeroDto> heros) {
 		return service.saveAll(heros);
+	}
+
+	@GetMapping("allpremium")
+	public List<HeroDto> getAllPremium() {
+		return Lists.newArrayList(premiumHero1);
 	}
 
 }
