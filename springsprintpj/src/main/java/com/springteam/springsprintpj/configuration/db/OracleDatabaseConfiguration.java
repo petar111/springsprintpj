@@ -14,17 +14,19 @@ import lombok.AllArgsConstructor;
 import oracle.jdbc.pool.OracleDataSource;
 
 @Configuration
-@PropertySource("classpath:db/dboracle.properties")
+@PropertySource("classpath:/application.properties")
 @AllArgsConstructor
 public class OracleDatabaseConfiguration {
 
 	@Autowired
 	private Environment environment;
 
-	@Bean
+	@Bean("oracleDataSource")
 	public DataSource getDataSource() {
 
 		try {
+
+			System.out.println(environment.getProperty("datasource.url"));
 
 			OracleDataSource dataSource = new OracleDataSource();
 

@@ -12,18 +12,18 @@ import org.springframework.core.env.Environment;
 import lombok.AllArgsConstructor;
 
 @Configuration
-@PropertySource("classpath:db/dbh2.properties")
+@PropertySource("classpath:/application.properties")
 @AllArgsConstructor
 public class H2DatabaseConfiguration {
-	
+
 	@Autowired
 	private Environment environment;
-	
+
 	@Bean("h2DataSource")
 	public DataSource getDataSource() {
 		JdbcDataSource dataSource = new JdbcDataSource();
-		dataSource.setUrl(environment.getProperty("datasource.url"));
-		
+		dataSource.setUrl(environment.getProperty("h2.datasource.url"));
+
 		return dataSource;
 	}
 

@@ -3,7 +3,10 @@ package com.springteam.springsprintpj.configuration.db.jpa;
 import java.io.IOException;
 import java.util.Properties;
 
+import javax.sql.DataSource;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Import;
@@ -21,24 +24,25 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 import com.springteam.springsprintpj.configuration.db.H2DatabaseConfiguration;
 import com.springteam.springsprintpj.configuration.db.OracleDatabaseConfiguration;
 
-import lombok.RequiredArgsConstructor;
-
 @Configuration
 @EnableTransactionManagement
 @Import({ OracleDatabaseConfiguration.class, H2DatabaseConfiguration.class })
-@RequiredArgsConstructor(onConstructor = @__(@Autowired))
 @EnableJpaRepositories(basePackages = { "com.springteam.springsprintpj.repository" })
 public class PersistenceConfiguration {
 
 	private static final String HIBERNATE_PROPERTIES_FILE_LOCATION = "db/hibernate/hibernate.properties";
 
-	private final OracleDatabaseConfiguration oracleDatabaseConfiguration;
-	private final H2DatabaseConfiguration h2DatabaseConfiguration;
+	private final DataSource dataSource;
+
+	@Autowired
+	public PersistenceConfiguration(@Qualifier("oracleDataSource") DataSource dataSource) {
+		this.dataSource = dataSource;
+	}
 
 	@Bean
 	public LocalContainerEntityManagerFactoryBean entityManagerFactory() {
 		LocalContainerEntityManagerFactoryBean em = new LocalContainerEntityManagerFactoryBean();
-		em.setDataSource(h2DatabaseConfiguration.getDataSource());
+		em.setDataSource(dataSource);
 		em.setPackagesToScan(new String[] { "com.springteam.springsprintpj.model" });
 
 		JpaVendorAdapter vendorAdapter = new HibernateJpaVendorAdapter();

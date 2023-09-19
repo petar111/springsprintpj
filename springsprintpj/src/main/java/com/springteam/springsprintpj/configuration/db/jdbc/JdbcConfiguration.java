@@ -1,6 +1,9 @@
 package com.springteam.springsprintpj.configuration.db.jdbc;
 
+import javax.sql.DataSource;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.config.ConfigurableBeanFactory;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -15,16 +18,18 @@ import com.springteam.springsprintpj.configuration.db.OracleDatabaseConfiguratio
 @Import({ OracleDatabaseConfiguration.class, H2DatabaseConfiguration.class })
 public class JdbcConfiguration {
 
+	private final DataSource dataSource;
+
 	@Autowired
-	private OracleDatabaseConfiguration oracleDatabaseConfiguration;
-	@Autowired
-	private H2DatabaseConfiguration h2DatabaseConfiguration;
+	public JdbcConfiguration(@Qualifier("oracleDataSource") DataSource dataSource) {
+		this.dataSource = dataSource;
+	}
 
 	@Bean
 	@Scope(value = ConfigurableBeanFactory.SCOPE_SINGLETON)
 	public JdbcTemplate jdbcTemplate() {
 
-		JdbcTemplate template = new JdbcTemplate(h2DatabaseConfiguration.getDataSource());
+		JdbcTemplate template = new JdbcTemplate(dataSource);
 
 		return template;
 	}
