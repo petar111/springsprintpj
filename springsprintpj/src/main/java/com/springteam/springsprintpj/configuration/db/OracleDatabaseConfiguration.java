@@ -24,21 +24,22 @@ public class OracleDatabaseConfiguration {
 	@Bean("oracleDataSource")
 	public DataSource getDataSource() {
 
-		try {
-
-			System.out.println(environment.getProperty("datasource.url"));
-
-			OracleDataSource dataSource = new OracleDataSource();
-
-			dataSource.setUser(environment.getProperty("datasource.username"));
-			dataSource.setPassword(environment.getProperty("datasource.password"));
-			dataSource.setURL(environment.getProperty("datasource.url"));
-
-			return dataSource;
-
-		} catch (SQLException e) {
-			throw new RuntimeException();
-		}
+//		try {
+//
+//			System.out.println(environment.getProperty("datasource.url"));
+//
+//			OracleDataSource dataSource = new OracleDataSource();
+//
+//			dataSource.setUser(environment.getProperty("datasource.username"));
+//			dataSource.setPassword(environment.getProperty("datasource.password"));
+//			dataSource.setURL(environment.getProperty("datasource.url"));
+//
+//			return dataSource;
+//
+//		} catch (SQLException e) {
+//			throw new RuntimeException();
+//		}
+		return null;
 
 	}
 }

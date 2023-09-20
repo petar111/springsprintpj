@@ -26,7 +26,7 @@ import lombok.Setter;
 public class Hero {
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.TABLE)
 	private BigDecimal id;
 
 	@Column(unique = true, nullable = false)

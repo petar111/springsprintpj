@@ -23,10 +23,11 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 import com.springteam.springsprintpj.configuration.db.H2DatabaseConfiguration;
 import com.springteam.springsprintpj.configuration.db.OracleDatabaseConfiguration;
+import com.springteam.springsprintpj.configuration.db.PostgreDatabaseConfiguration;
 
 @Configuration
 @EnableTransactionManagement
-@Import({ OracleDatabaseConfiguration.class, H2DatabaseConfiguration.class })
+@Import({ PostgreDatabaseConfiguration.class, OracleDatabaseConfiguration.class, H2DatabaseConfiguration.class })
 @EnableJpaRepositories(basePackages = { "com.springteam.springsprintpj.repository" })
 public class PersistenceConfiguration {
 
@@ -35,7 +36,7 @@ public class PersistenceConfiguration {
 	private final DataSource dataSource;
 
 	@Autowired
-	public PersistenceConfiguration(@Qualifier("oracleDataSource") DataSource dataSource) {
+	public PersistenceConfiguration(@Qualifier("postgreDatasource") DataSource dataSource) {
 		this.dataSource = dataSource;
 	}
 

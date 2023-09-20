@@ -13,15 +13,16 @@ import org.springframework.jdbc.core.JdbcTemplate;
 
 import com.springteam.springsprintpj.configuration.db.H2DatabaseConfiguration;
 import com.springteam.springsprintpj.configuration.db.OracleDatabaseConfiguration;
+import com.springteam.springsprintpj.configuration.db.PostgreDatabaseConfiguration;
 
 @Configuration
-@Import({ OracleDatabaseConfiguration.class, H2DatabaseConfiguration.class })
+@Import({ PostgreDatabaseConfiguration.class, OracleDatabaseConfiguration.class, H2DatabaseConfiguration.class })
 public class JdbcConfiguration {
 
 	private final DataSource dataSource;
 
 	@Autowired
-	public JdbcConfiguration(@Qualifier("oracleDataSource") DataSource dataSource) {
+	public JdbcConfiguration(@Qualifier("postgreDatasource") DataSource dataSource) {
 		this.dataSource = dataSource;
 	}
 
