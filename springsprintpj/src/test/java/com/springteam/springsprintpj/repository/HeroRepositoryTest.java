@@ -30,7 +30,7 @@ import com.springteam.springsprintpj.model.exception.hero.HeroNotFoundException;
 class HeroRepositoryTest {
 	
 	private AnnotationConfigApplicationContext context;
-	private HeroRepository heroRepository;
+	private HeroRepository heroRepository;intentional compiler mistake
 
 	/**
 	 * @throws java.lang.Exception
