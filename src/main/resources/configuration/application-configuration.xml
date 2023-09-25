@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="
+        http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <!-- bean definitions here -->
+    <bean id="premiumHero-DC001AC13" class="com.springteam.springsprintpj.model.dto.HeroDto">
+        <property name="name" value="Imperial Knight[Enchanted]"/>
+        <property name="description" value="Only the greatest imperial knights get enchanted by going through the trial of the 1000 wounds."/>
+        <property name="hitpoints" value="1669"/>
+    </bean>
+
+</beans>
